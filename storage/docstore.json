@@ -1,0 +1,83 @@
+{
+    "docstore/metadata": {
+        "ca658aa6-4bb1-42e5-8162-f739798fb017": {
+            "doc_hash": "f4dac5d9eac061fdd45a1f79fd287a6d713717b180246aad8cc73d34c50860ab"
+        },
+        "dccbea94-6830-44d9-8e1b-eb4d6a10dff9": {
+            "doc_hash": "f4dac5d9eac061fdd45a1f79fd287a6d713717b180246aad8cc73d34c50860ab",
+            "ref_doc_id": "ca658aa6-4bb1-42e5-8162-f739798fb017"
+        }
+    },
+    "docstore/data": {
+        "dccbea94-6830-44d9-8e1b-eb4d6a10dff9": {
+            "__data__": {
+                "id_": "dccbea94-6830-44d9-8e1b-eb4d6a10dff9",
+                "embedding": null,
+                "metadata": {
+                    "file_path": "C:\\work\\study\\llama\\data\\example.txt",
+                    "file_name": "example.txt",
+                    "file_type": "text/plain",
+                    "file_size": 134,
+                    "creation_date": "2024-09-02",
+                    "last_modified_date": "2024-09-02"
+                },
+                "excluded_embed_metadata_keys": [
+                    "file_name",
+                    "file_type",
+                    "file_size",
+                    "creation_date",
+                    "last_modified_date",
+                    "last_accessed_date"
+                ],
+                "excluded_llm_metadata_keys": [
+                    "file_name",
+                    "file_type",
+                    "file_size",
+                    "creation_date",
+                    "last_modified_date",
+                    "last_accessed_date"
+                ],
+                "relationships": {
+                    "1": {
+                        "node_id": "ca658aa6-4bb1-42e5-8162-f739798fb017",
+                        "node_type": "4",
+                        "metadata": {
+                            "file_path": "C:\\work\\study\\llama\\data\\example.txt",
+                            "file_name": "example.txt",
+                            "file_type": "text/plain",
+                            "file_size": 134,
+                            "creation_date": "2024-09-02",
+                            "last_modified_date": "2024-09-02"
+                        },
+                        "hash": "f4dac5d9eac061fdd45a1f79fd287a6d713717b180246aad8cc73d34c50860ab",
+                        "class_name": "RelatedNodeInfo"
+                    }
+                },
+                "text": "\u6d5c\u7530\u5bb6\u306e\u732b\u306e\u540d\u524d\u306f\u592a\u90ce\u52a9\u3067\u3059\u3002\r\n\u307c\u304f\u306e\u540d\u524d\u306f\u308a\u3063\u3061\u3083\u3093\u3067\u3059\u3002\u308a\u3063\u3061\u3083\u3093\u306f\u30c8\u30df\u30ab\u304c\u597d\u304d\u3067\u3059\u3002",
+                "mimetype": "text/plain",
+                "start_char_idx": 0,
+                "end_char_idx": 46,
+                "text_template": "{metadata_str}\n\n{content}",
+                "metadata_template": "{key}: {value}",
+                "metadata_seperator": "\n",
+                "class_name": "TextNode"
+            },
+            "__type__": "1"
+        }
+    },
+    "docstore/ref_doc_info": {
+        "ca658aa6-4bb1-42e5-8162-f739798fb017": {
+            "node_ids": [
+                "dccbea94-6830-44d9-8e1b-eb4d6a10dff9"
+            ],
+            "metadata": {
+                "file_path": "C:\\work\\study\\llama\\data\\example.txt",
+                "file_name": "example.txt",
+                "file_type": "text/plain",
+                "file_size": 134,
+                "creation_date": "2024-09-02",
+                "last_modified_date": "2024-09-02"
+            }
+        }
+    }
+}
