@@ -5,21 +5,40 @@ from llama_index.core import (
     StorageContext,
     load_index_from_storage,
 )
+from pydantic import BaseModel, Field
+from llama_index.vector_stores.qdrant import QdrantVectorStore
+from llama_index.embeddings.fastembed import FastEmbedEmbedding
 
-# ストレージが既に存在するか確認
-if not os.path.exists("./storage"):
-    # ドキュメントを読み込んでインデックスを作成
-    documents = SimpleDirectoryReader("data").load_data()
-    index = VectorStoreIndex.from_documents(documents)
-    # 後で使うために保存
-    index.storage_context.persist()
-else:
-    # 既存のインデックスを読み込む
-    storage_context = StorageContext.from_defaults(persist_dir="./storage")
-    index = load_index_from_storage(storage_context)
+from qdrant_client import QdrantClient
 
-# いずれの場合もインデックスをクエリできる
-query_engine = index.as_query_engine()
-response = query_engine.query("りっちゃんの好きなものは?")
-# response = query_engine.query("浜田家の猫の名前は?")
-print(response)
+
+class Response(BaseModel):
+    answer: str = Field(description="質問に対する回答")
+    summary: str = Field(description="回答の要約", default="")
+    source: str = Field(description="回答のソース", default="")
+    related_topics: list[str] = Field(description="関連するトピック", default=[])
+
+
+# Qdrantの設定
+QDRANT_HOST = "localhost"  # Qdrantのホスト名またはIPアドレス
+QDRANT_PORT = 6333  # Qdrantのポート番号
+COLLECTION_NAME = "llama_index"  # Qdrantのコレクション名
+
+# Qdrantクライアントの初期化
+qdrant_client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+# load documents
+documents = SimpleDirectoryReader("./data/paul_graham/").load_data()
+# QdrantVectorStoreの初期化
+vector_store = QdrantVectorStore(client=qdrant_client, collection_name="paul_graham")
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+index = VectorStoreIndex.from_documents(
+    documents,
+    storage_context=storage_context,
+)
+
+# set Logging to DEBUG for more detailed outputs
+query_engine = index.as_query_engine(
+    response_mode="tree_summarize", output_cls=Response
+)
+response = query_engine.query("日本語で回答して。Kdsasとは")
+print(f"{response}")
