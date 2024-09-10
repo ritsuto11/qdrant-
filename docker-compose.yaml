@@ -15,6 +15,15 @@ services:
         target: /qdrant/config/production.yaml
     volumes:
       - ./qdrant_data:/qdrant/storage
+  web: # Python アプリケーションのサービス
+    build: .
+    tty: true
+    volumes:
+      - ./:/app # ホストのカレントディレクトリをコンテナの /app にマウント
+    depends_on:
+      - qdrant # qdrant サービスが起動してから web サービスを起動
+    env_file:
+      - .env
 
 configs:
   qdrant_config:

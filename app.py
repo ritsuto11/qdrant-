@@ -8,7 +8,6 @@ from llama_index.core import (
 from pydantic import BaseModel, Field
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from llama_index.embeddings.fastembed import FastEmbedEmbedding
-
 from qdrant_client import QdrantClient
 
 
@@ -20,7 +19,7 @@ class Response(BaseModel):
 
 
 # Qdrantの設定
-QDRANT_HOST = "localhost"  # Qdrantのホスト名またはIPアドレス
+QDRANT_HOST = "qdrant"  # Qdrantのホスト名またはIPアドレス
 QDRANT_PORT = 6333  # Qdrantのポート番号
 COLLECTION_NAME = "llama_index"  # Qdrantのコレクション名
 
@@ -40,5 +39,5 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine(
     response_mode="tree_summarize", output_cls=Response
 )
-response = query_engine.query("日本語で回答して。Kdsasとは")
+response = query_engine.query("日本語で回答して。浜田家の猫の名前は？")
 print(f"{response}")
