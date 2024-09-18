@@ -90,7 +90,7 @@ if __name__ == "__main__":
         qdrant_client=qdrant_client, collection_name=COLLECTION_NAME
     )
     # index = index_builder.build_from_documents(
-    #     Documents.from_directory("./data/totoro/").value
+    #     Documents.from_directory("./documents/totoro/").value
     # )
     # # または
     index = index_builder.build_from_vector_store()
