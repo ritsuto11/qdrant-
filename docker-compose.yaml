@@ -25,6 +25,9 @@ services:
       - qdrant # qdrant サービスが起動してから web サービスを起動
     env_file:
       - .env
+    environment:
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
 
 configs:
   qdrant_config:

@@ -79,15 +79,13 @@ class VectorStoreIndexBuilder:
 
 if __name__ == "__main__":
 
-    # Qdrantの設定
-    QDRANT_HOST = "localhost"  # Qdrantのホスト名またはIPアドレス
-    # QDRANT_HOST = "qdrant"  # Qdrantのホスト名またはIPアドレス
-    QDRANT_PORT = 6333  # Qdrantのポート番号
-    COLLECTION_NAME = "totoro"  # Qdrantのコレクション名
-
     # Qdrantクライアントの初期化
-    qdrant_client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+    qdrant_client = QdrantClient(
+        host=os.getenv("QDRANT_HOST", "localhost"),
+        port=os.getenv("QDRANT_PORT", 6333),
+    )
 
+    COLLECTION_NAME = "totoro"  # Qdrantのコレクション名
     index_builder = VectorStoreIndexBuilder(
         qdrant_client=qdrant_client, collection_name=COLLECTION_NAME
     )
