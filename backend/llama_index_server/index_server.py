@@ -42,14 +42,13 @@ qdrant_client = QdrantClient(
 )
 
 COLLECTION_NAME = "totoro"  # Qdrantのコレクション名
-index_builder = IndexStore(
-    qdrant_client=qdrant_client, collection_name=COLLECTION_NAME
-)
+index_builder = IndexStore(qdrant_client=qdrant_client, collection_name=COLLECTION_NAME)
 # index = index_builder.build_from_documents(
 #     Documents.from_directory("./documents/totoro/").value
 # )
 # # または
 index = index_builder.build_from_vector_store()
+
 
 class Response(BaseModel):
     answer: str = Field(description="質問に対する回答")
@@ -62,6 +61,7 @@ class Response(BaseModel):
         description="回答のソースに使った ファイルパス", default=""
     )
     related_topics: list[str] = Field(description="関連するトピック", default=[])
+
 
 query_engine = index.as_query_engine(
     llm=Gemini(models=GEMINI_MODELS[6]),
