@@ -18,6 +18,8 @@ services:
   web: # Python アプリケーションのサービス
     build: .
     tty: true
+    ports:
+      - 8000:8000
     volumes:
       - ./backend:/app # ホストのカレントディレクトリをコンテナの /app にマウント
     depends_on:
