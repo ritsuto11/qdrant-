@@ -9,21 +9,20 @@ services:
     expose:
       - 6333
       - 6334
-      - 6335
     configs:
       - source: qdrant_config
         target: /qdrant/config/production.yaml
     volumes:
       - ./qdrant_data:/qdrant/storage
-  web: # Python アプリケーションのサービス
+  web: 
     build: .
     tty: true
     ports:
       - 8000:8000
     volumes:
-      - ./backend:/app # ホストのカレントディレクトリをコンテナの /app にマウント
+      - ./backend:/app 
     depends_on:
-      - qdrant # qdrant サービスが起動してから web サービスを起動
+      - qdrant 
     env_file:
       - .env
     environment:
